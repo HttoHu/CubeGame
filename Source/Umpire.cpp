@@ -1,4 +1,19 @@
 #include "../Head/Umpire.hpp"
+std::string mark(const State & s)
+{
+	static int black=0;
+	static int red=0;
+	static int gray=0;
+	switch (s)
+	{
+	case State::Black:black++; break;
+	case State::Gray:gray++; break;
+	case State::Red:red++; break;
+	default:
+		break;
+	}
+	return "Black:" + std::to_string(black) + "\nGray:"+std::to_string(gray)+"\nRed:"+std::to_string(red);
+}
 enum State& player_state()
 {
   static enum State present=Black;
@@ -54,8 +69,11 @@ bool judge(const State & s)
       {
         if(i==j||i==k||j==k)
           continue;
-        else if(Coor::InALine(v[i],v[j],v[k]))
-            return true;
+		else if (Coor::InALine(v[i], v[j], v[k]))
+		{
+			//std::cout << v[i].to_string() << "   " << v[j].to_string() << "   " << v[k].to_string() << std::endl;
+			return true;
+		}
       }
   return false;
 }

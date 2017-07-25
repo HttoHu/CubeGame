@@ -5,6 +5,7 @@
 #include <array>
 #include <vector>
 #include <iostream>
+std::string mark(const State & s);
 enum State& player_state();
 std::array<State,27>& Data();
 Coor get_coor_by_array_pos(int pos);
